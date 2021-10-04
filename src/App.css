@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+
+body {
+  background: #f5f5f5;
+  color: #555555;
+  font-family: 'Roboto Slab';
+}
+
+.container {
+  
+}
+
+.blue {
+  color: #5882E3;
+}
+.gray {
+   color: #ced4da;
+}
+.black {
+  color: #343a40;
+}
+
+.living-room {
+  background-color: #17a2b8;
+}
+.backyard {
+  background-color: #28a745;
+}
+.kitchen {
+  background-color: #ffc107;
+}
+
+.timeline-entry {
+  background-color: #fff;
+}
+
+.h4 {
+  background-color: initial;
+}
