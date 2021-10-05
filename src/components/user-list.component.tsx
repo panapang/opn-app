@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import UserService from "../services/user.service";
 import { Link } from "react-router-dom";
-import IUserData from "../types/user.type";
+import IUser from "../types/user.type";
 
 const UserList = () => {
-  const [user, setUser] = useState<IUserData[]>([]);
-  const [currentUser, setCurrentUser] = useState<IUserData | null>(null);
+  const [user, setUser] = useState<IUser[]>([]);
+  const [currentUser, setCurrentUser] = useState<IUser | null>(null);
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [searchName, setSearchName] = useState("");
 
@@ -35,7 +35,7 @@ const UserList = () => {
     setCurrentIndex(-1);
   };
 
-  const setActiveUser = (member: IUserData, index: number) => {
+  const setActiveUser = (member: IUser, index: number) => {
     setCurrentUser(member);
     setCurrentIndex(index);
   };
@@ -118,7 +118,7 @@ const UserList = () => {
             </div>
 
             <Link
-              to={"/user/" + currentUser.id}
+              to={"/user/" + currentUser.name}
               className="badge badge-warning"
             >
               Edit

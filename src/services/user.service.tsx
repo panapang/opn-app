@@ -1,5 +1,5 @@
 import http from "../http-common";
-import IUserData from "../types/user.type";
+import IUser from "../types/user.type";
 
 const getAll = () => {
   return http.get("/users");
@@ -9,11 +9,11 @@ const get = (id: string) => {
   return http.get(`/users/${id}`);
 };
 
-const create = (data: IUserData) => {
+const create = (data: IUser) => {
   return http.post("/users", data);
 };
 
-const update = (id: string, data: IUserData) => {
+const update = (id: string, data: IUser) => {
   return http.put(`/users/${id}`, data);
 };
 

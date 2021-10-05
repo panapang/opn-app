@@ -1,5 +1,4 @@
-export default interface IUserData {
-    id?: any | null,
+export default interface IUser {
     name: string,
     actived: boolean
-  }
+}

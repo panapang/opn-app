@@ -1,13 +1,13 @@
 import React, { useState } from "react";
+import User from "../models/user";
 import UserService from "../services/user.service";
 
 const AddUser = () => {
   const initialUserState = {
-    id: null,
     name: "",
     actived: true
   };
-  const [user, setUser] = useState(initialUserState);
+  const [user, setUser] = useState<User>(initialUserState);
   const [submitted, setSubmitted] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,7 +24,6 @@ const AddUser = () => {
     UserService.create(data)
       .then(response => {
         setUser({
-          id: response.data.id,
           name: response.data.name,
           actived: response.data.actived
         });

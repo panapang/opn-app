@@ -3,23 +3,23 @@ import IAreaData from "../types/area.type"
 
 class AreaService {
   getAll() {
-    return http.get("/area");
+    return http.get("/areas");
   }
 
   get(id: string) {
-    return http.get(`/area/${id}`);
+    return http.get(`/areas/${id}`);
   }
 
   create(data: IAreaData) {
-    return http.post("/area", data);
+    return http.post("/areas", data);
   }
 
   update(data: IAreaData, id: any) {
-    return http.put(`/area/${id}`, data);
+    return http.put(`/areas/${id}`, data);
   }
 
   delete(id: any) {
-    return http.delete(`/area/${id}`);
+    return http.delete(`/areas/${id}`);
   }
 
 }

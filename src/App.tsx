@@ -21,7 +21,7 @@ class App extends Component {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={"/member"} className="nav-link">
+              <Link to={"/user"} className="nav-link">
                 User
               </Link>
             </li>
@@ -36,9 +36,9 @@ class App extends Component {
         <div className="container mt-3">
           <Switch>
             <Route exact path={["/", "/timeline"]} component={Timeline} />
-            <Route exact path="/addmember" component={AddUser} />
-            <Route exact path="/member" component={UserList} />
-            <Route path="/member/:id" component={User} />
+            <Route exact path="/adduser" component={AddUser} />
+            <Route exact path="/user" component={UserList} />
+            <Route path="/user/:id" component={User} />
           </Switch>
         </div>
       </div>

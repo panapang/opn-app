@@ -1,6 +1,7 @@
-export default interface ITimelineData {
-  id?: any | null,
-  name: string,
-  bookFrom: string,
-  bookTo: string
+export default interface ITimeline {
+  user: string,
+  area: string,
+  bookDate: Date,
+  bookFrom: Date,
+  bookTo: Date
 }

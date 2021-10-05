@@ -3,27 +3,27 @@ import ITimelineData from "../types/timeline.type"
 
 class TimelineService {
   getAll() {
-    return http.get("/timeline");
+    return http.get("/timelines");
   }
 
   get(id: string) {
-    return http.get(`/timeline/${id}`);
+    return http.get(`/timelines/${id}`);
   }
 
   create(data: ITimelineData) {
-    return http.post("/timeline", data);
+    return http.post("/timelines", data);
   }
 
   update(data: ITimelineData, id: any) {
-    return http.put(`/timeline/${id}`, data);
+    return http.put(`/timelines/${id}`, data);
   }
 
   delete(id: any) {
-    return http.delete(`/timeline/${id}`);
+    return http.delete(`/timelines/${id}`);
   }
 
   deleteAll() {
-    return http.delete(`/timeline`);
+    return http.delete(`/timelines`);
   }
 }
 

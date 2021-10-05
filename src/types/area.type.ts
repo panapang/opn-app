@@ -1,5 +1,5 @@
-export default interface IAreaData {
+export default interface IArea {
   id?: any | null,
   name: string,
-  color?: string
+  color: string
 }

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import UserService from "../services/user.service";
-import IUserData from "../types/user.type";
+import IUser from "../types/user.type";
 //TODO
 const User = (props: any) => {
   const initialUserState = {
-    id: null,
+    _id: null,
     name: "",
     actived: true
   };
-  const [currentUser, setCurrentUser] = useState<IUserData>(initialUserState);
+  const [currentUser, setCurrentUser] = useState<IUser>(initialUserState);
   const [message, setMessage] = useState("");
 
   const getUser = (id: string) => {
@@ -32,42 +32,41 @@ const User = (props: any) => {
   };
 
   const updateStatus = (status: boolean) => {
-    var data: IUserData = {
-      id: currentUser.id,
+    var data: IUser = {
       name: currentUser.name,
       actived: status
     };
 
-    UserService.update(currentUser.id, data)
+   /*  UserService.update(currentUser._id, data)
       .then(response => {
         setCurrentUser({ ...currentUser, actived: status });
         console.log(response.data);
       })
       .catch(e => {
         console.log(e);
-      });
+      }); */
   };
 
   const updateUser = () => {
-    UserService.update(currentUser.id, currentUser)
+  /*   UserService.update(currentUser._id, currentUser)
       .then(response => {
         console.log(response.data);
         setMessage("The user was updated successfully!");
       })
       .catch(e => {
         console.log(e);
-      });
+      }); */
   };
 
   const deleteUser = () => {
-    UserService.remove(currentUser.id)
+    /* UserService.remove(currentUser._id)
       .then(response => {
         console.log(response.data);
         props.history.push("/user");
       })
       .catch(e => {
         console.log(e);
-      });
+      }); */
   };
 
   return (
