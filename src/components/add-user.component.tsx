@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import User from "../models/user";
 import UserService from "../services/user.service";
+import IUser from "../types/user.type";
 
 const AddUser = () => {
   const initialUserState = {
     name: "",
     actived: true
   };
-  const [user, setUser] = useState<User>(initialUserState);
+  const [user, setUser] = useState<IUser>(initialUserState);
   const [submitted, setSubmitted] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
