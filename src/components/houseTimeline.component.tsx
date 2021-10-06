@@ -16,20 +16,12 @@ import ITimeline from "../types/timeline.type";
 import ITimelineGraph from "../types/timelineGraph.type";
 import IArea from "../types/area.type";
 
-
 type TimelineForm = {
   user: string;
   area: string;
   bookFrom: Date;
   bookTo: Date;
 };
-
-type RespType = {
-  userList: IUser[] | null;
-  areaList: IArea[] | null;
-  timeline: ITimeline[] | null;
-};
-
 
 const HouseTimeline = () => {
   const userList: IUser[] = [
@@ -68,7 +60,7 @@ const HouseTimeline = () => {
       _id: "3",
       key: "backyard",
       name: "Backyard",
-      color: "28a745"
+      color: "#28a745"
     }
   ];
 
@@ -106,13 +98,13 @@ const HouseTimeline = () => {
           })
   };
 
-
   const {
     register,
     control,
     handleSubmit,
     setValue,
-    formState: { errors }
+    formState: { errors },
+    reset
   } = useForm<TimelineForm>({
     resolver: yupResolver(schema)
   });
@@ -125,15 +117,16 @@ const HouseTimeline = () => {
 
   const [bookDate, setBookDate] = useState(withoutTime(new Date()));
   const [timeline, setTimeline] = useState([]);
-
   const [alert, setAlert] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
-
   const [items, setItems] = useState<any>([]);
 
   useEffect(() => {
     const fetchData = async () => {
+      if(items.length && !alert) {
+        return;
+      }
       setIsLoading(true);
       setHasError(false);
       try {
@@ -145,7 +138,7 @@ const HouseTimeline = () => {
     }
     fetchData();
 
-  }, []);
+  }, [alert]);
 
   useEffect(() => {
     if(alert) {
@@ -160,7 +153,6 @@ const HouseTimeline = () => {
       .then(response => {
         setTimeline(response.data);
         setItems(mapColor(response.data));
-        console.log("items ====", items);
       })
       .catch(e => {
         console.log(e);
@@ -195,6 +187,7 @@ const HouseTimeline = () => {
       .then(response => {
         console.log(response.data);
         setAlert(true);
+        reset();
       })
       .catch(e => {
         console.log(e);
