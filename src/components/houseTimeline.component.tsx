@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -207,13 +207,12 @@ const HouseTimeline = () => {
       <div
         {...getItemProps({
           style: {
-              backgroundColor: item.style?.backgroundColor,
-              color: item.style?.backgroundColor,
-              borderColor: item.style?.backgroundColor
+            background: item.style?.backgroundColor,
+            color: item.style?.backgroundColor,
+            border: item.style?.backgroundColor,
           }
         })}
       >
-       
       </div>
     );
   };
