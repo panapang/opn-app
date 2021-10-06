@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -78,11 +78,35 @@ const HouseTimeline = () => {
     user: Yup.string().label("Name").trim().required().default(""),
     area: Yup.string().label("Area").trim().required().default(""),
     bookFrom: Yup.date().min(new Date(), "Past date is not allowed").label("From").required(),
-    bookTo: Yup.date().nullable().min(new Date(), "Past date is not allowed").label("To").required().default(null)
+    bookTo: Yup.date()
       .when("bookFrom",
-        (bookFrom, yup) => bookFrom && yup.min(bookFrom, "To time cannot be before from time"))
+       (bookFrom, yup) => bookFrom && yup.min(bookFrom, "To time cannot be before from time"))
+      .test('sameTime', '',  function (value, context) {
+        const compareDate = moment(this.parent.bookFrom);
+        const user = this.parent.user;
+
+        if ((isSameTime(this.parent.bookFrom, this.parent.user, timeline) &&
+        isSameTime(this.parent.bookTo, this.parent.user, timeline))) {
+          return this.createError({ message: 'Same Time !!' });
+        }
+        return true;
+      })
+      .nullable().min(new Date(), "Past date is not allowed").label("To").required().default(null)
   }).required();
   
+
+  const isSameTime = (compareDate: Date, user: string, timeline: ITimeline[]) => {
+    const compareDateMoment = moment(compareDate);
+    return timeline
+          .filter((t: ITimeline) => t.user === user)
+          .some((t: ITimeline) => {
+            let startDate = moment(t.bookFrom);
+            let endDate = moment(t.bookTo); 
+            return compareDateMoment.isBetween(startDate, endDate);
+          })
+  };
+
+
   const {
     register,
     control,
@@ -100,6 +124,7 @@ const HouseTimeline = () => {
   }
 
   const [bookDate, setBookDate] = useState(withoutTime(new Date()));
+  const [timeline, setTimeline] = useState([]);
 
   const [alert, setAlert] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -133,6 +158,7 @@ const HouseTimeline = () => {
   const retrieveTimeline = () => {
     TimelineService.getAll()
       .then(response => {
+        setTimeline(response.data);
         setItems(mapColor(response.data));
         console.log("items ====", items);
       })
@@ -177,8 +203,6 @@ const HouseTimeline = () => {
   };
 
   const itemRenderer = ({ item, itemContext, getItemProps, getResizeProps }: ReactCalendarItemRendererProps ) => {
-    const backgroundColor = item.style?.backgroundColor;
-    console.log("backgroundColor" , backgroundColor);
     return (
       <div
         {...getItemProps({
