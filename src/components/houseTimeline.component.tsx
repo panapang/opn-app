@@ -1,4 +1,4 @@
-import { SyntheticEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -115,7 +115,6 @@ const HouseTimeline = () => {
     return date;
   }
 
-  const [bookDate, setBookDate] = useState(withoutTime(new Date()));
   const [timeline, setTimeline] = useState([]);
   const [alert, setAlert] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -210,9 +209,9 @@ const HouseTimeline = () => {
     );
   };
 
-  const defaultTimeStart = moment(bookDate.setHours(0, 0, 0, 0)).toDate();
-  const defaultTimeEnd = moment(bookDate.setHours(0, 0, 0, 0)).add(1, "day").toDate();
-  const defaultTimeRange = moment(bookDate.setHours(0, 0, 0, 0)).add(1, "day").diff(moment(bookDate.setHours(0, 0, 0, 0)).toDate());
+  const defaultTimeStart = moment(new Date().setHours(0, 0, 0, 0));
+  const defaultTimeEnd = moment(new Date().setHours(0, 0, 0, 0)).add(1, "day");
+  const defaultTimeRange = defaultTimeEnd.diff(defaultTimeStart);
 
   return (
     <div className="col-12">
