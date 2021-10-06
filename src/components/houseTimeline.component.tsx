@@ -80,7 +80,7 @@ const HouseTimeline = () => {
     bookFrom: Yup.date().min(new Date(), "Past date is not allowed").label("From").required(),
     bookTo: Yup.date()
       .when("bookFrom",
-       (bookFrom, yup) => bookFrom && yup.min(bookFrom, "To time cannot be before from time"))
+       (bookFrom, yup) => bookFrom && yup.min(moment(bookFrom).add(10, "minutes").toDate(), "To time cannot be before from time"))
       .test('sameTime', '',  function (value, context) {
         const compareDate = moment(this.parent.bookFrom);
         const user = this.parent.user;
