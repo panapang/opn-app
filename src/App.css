@@ -37,3 +37,8 @@ body {
 .h4 {
   background-color: initial;
 }
+
+.btn-black {
+  background-color: #343a40;
+  color: #fff;
+}

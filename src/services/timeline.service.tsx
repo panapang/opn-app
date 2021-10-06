@@ -1,5 +1,5 @@
 import http from "../http-common";
-import ITimelineData from "../types/timeline.type"
+import ITimeline from "../types/timeline.type"
 
 class TimelineService {
   getAll() {
@@ -10,11 +10,11 @@ class TimelineService {
     return http.get(`/timelines/${id}`);
   }
 
-  create(data: ITimelineData) {
+  create(data: ITimeline) {
     return http.post("/timelines", data);
   }
 
-  update(data: ITimelineData, id: any) {
+  update(data: ITimeline, id: any) {
     return http.put(`/timelines/${id}`, data);
   }
 

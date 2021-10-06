@@ -1,5 +1,6 @@
 export default interface IArea {
-  id?: any | null,
+  _id?: string | null,
+  key: string,
   name: string,
   color: string
 }

@@ -6,7 +6,7 @@ import './App.css';
 
 import User from "./components/user.component";
 import UserList from "./components/user-list.component";
-import Timeline from './components/timeline.component';
+import HouseTimeline from './components/houseTimeline.component';
 import AddUser from './components/add-user.component';
 
 class App extends Component {
@@ -16,7 +16,7 @@ class App extends Component {
         <nav className="navbar navbar-expand">
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
-              <Link to={"/timeline"} className="nav-link">
+              <Link to={"/houseTimeline"} className="nav-link">
                 House Timeline
               </Link>
             </li>
@@ -35,7 +35,7 @@ class App extends Component {
 
         <div className="container mt-3">
           <Switch>
-            <Route exact path={["/", "/timeline"]} component={Timeline} />
+            <Route exact path={["/", "/houseTimeline"]} component={HouseTimeline} />
             <Route exact path="/adduser" component={AddUser} />
             <Route exact path="/user" component={UserList} />
             <Route path="/user/:id" component={User} />
