@@ -64,3 +64,7 @@ body {
 .card.color-area:first-child {
   margin-left: auto;
 }
+
+.react-datepicker-popper {
+  z-index: 9999 !important;
+}
