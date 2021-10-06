@@ -201,9 +201,9 @@ const HouseTimeline = () => {
   return (
     <div className="col-12">
       {hasError && <p>Something went wrong.</p>}
-      <h1 className="text-center">House Timeline</h1>
+      <h1 className="text-center pb-3">House Timeline</h1>
 
-      <div className="col-12 panel">
+      <div className="col-12 timeline-panel py-4">
         <h4>Timeline</h4>
         <div>
           {isLoading ? 
@@ -229,11 +229,53 @@ const HouseTimeline = () => {
             
           }
         </div>
+        <div className="py-2">
+          <div className="col-12 d-flex color-area-panel">
+            <div className="card color-area">
+              <div className="row g-0">
+                <div className="col-4 living-room">
+                </div>
+                <div className="col-8">
+                  <div className="card-body py-0">
+                    <p className="card-title mb-0">Living Room</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="card color-area">
+              <div className="row g-0">
+                <div className="col-4 kitchen">
+                </div>
+                <div className="col-8">
+                  <div className="card-body py-0">
+                    <p className="card-title mb-0">Kitchen</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="card color-area">
+              <div className="row g-0">
+                <div className="col-4 backyard">
+                </div>
+                <div className="col-8">
+                  <div className="card-body py-0">
+                    <p className="card-title mb-0">Backyard</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="bg-light p-3 rounded mt-3">
         <h4 className="blue">Timeline Entry</h4>
-        {alert && <h2> Submit Successful</h2>}
+        {
+          alert && 
+          <div className="alert alert-success" role="alert">
+            Submit Successful
+          </div>
+        }
 
         <div className="row g-3">
           <form onSubmit={handleSubmit(onSubmit)} className="row pt-4">

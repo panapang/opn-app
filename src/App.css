@@ -42,3 +42,25 @@ body {
   background-color: #343a40;
   color: #fff;
 }
+
+.timeline-panel {
+  border-top: solid #ced4da;
+  border-bottom: solid #ced4da;
+}
+
+.color-area-panel {
+  font-size: 0.7rem;
+}
+
+.card {
+  border: initial;
+  background: initial;
+}
+
+.card-body {
+  width: 200px;
+}
+
+.card.color-area:first-child {
+  margin-left: auto;
+}
